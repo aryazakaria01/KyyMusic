@@ -69,8 +69,8 @@ async def down(_,CallbackQuery):
 async def getspy(_,CallbackQuery):  
     callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]
-    userid = CallbackQuery.from_user.id 
-    type, videoid, user_id = callback_request.split("|") 
+    userid = CallbackQuery.from_user.id
+    type, videoid, user_id = callback_request.split("|")
     Name = CallbackQuery.from_user.first_name
     userLastDownloadTime = user_time.get(userid)
     try:
@@ -80,7 +80,7 @@ async def getspy(_,CallbackQuery):
     except:
         pass
     url = (f"https://www.youtube.com/watch?v={videoid}")
-    
+
     try:
         title, thumbnail_url, formats = extractYt(url)
         now = datetime.now()
@@ -102,16 +102,16 @@ async def getspy(_,CallbackQuery):
                 j += 1
                 if j == 1:
                     a1 = InlineKeyboardButton(text=f"ᴀᴜᴅɪᴏ 🎵 {humanbytes(x['filesize'])}", callback_data=f"ytdata audio||{x['format_id']}||{videoid}")
-                if j == 2:
+                elif j == 2:
                     a2 = InlineKeyboardButton(text=f"ᴀᴜᴅɪᴏ 🎵 {humanbytes(x['filesize'])}", callback_data=f"ytdata audio||{x['format_id']}||{videoid}")
-                if j == 3:
-                    a3 = InlineKeyboardButton(text=f"ᴀᴜᴅɪᴏ 🎵 {humanbytes(x['filesize'])}", callback_data=f"ytdata audio||{x['format_id']}||{videoid}") 
-                if j == 4:
+                elif j == 3:
+                    a3 = InlineKeyboardButton(text=f"ᴀᴜᴅɪᴏ 🎵 {humanbytes(x['filesize'])}", callback_data=f"ytdata audio||{x['format_id']}||{videoid}")
+                elif j == 4:
                     a4 = InlineKeyboardButton(text=f"ᴀᴜᴅɪᴏ 🎵 {humanbytes(x['filesize'])}", callback_data=f"ytdata audio||{x['format_id']}||{videoid}")
-                if j == 5:
+                elif j == 5:
                     a5 = InlineKeyboardButton(text=f"ᴀᴜᴅɪᴏ 🎵 {humanbytes(x['filesize'])}", callback_data=f"ytdata audio||{x['format_id']}||{videoid}")
-                if j == 6:
-                    a6 = InlineKeyboardButton(text=f"ᴀᴜᴅɪᴏ 🎵 {humanbytes(x['filesize'])}", callback_data=f"ytdata audio||{x['format_id']}||{videoid}")  
+                elif j == 6:
+                    a6 = InlineKeyboardButton(text=f"ᴀᴜᴅɪᴏ 🎵 {humanbytes(x['filesize'])}", callback_data=f"ytdata audio||{x['format_id']}||{videoid}")
         elif type == "video":
             if str(133) in check:
                 a += 1
@@ -148,10 +148,10 @@ async def getspy(_,CallbackQuery):
                 if int(f) == 1:
                     j += 1
                     f += 1
-                    a6 = InlineKeyboardButton(text=f"(2160)p 📹 {humanbytes(x['filesize'])}", callback_data=f"ytdata video||{x['format_id']}||{videoid}")   
+                    a6 = InlineKeyboardButton(text=f"(2160)p 📹 {humanbytes(x['filesize'])}", callback_data=f"ytdata video||{x['format_id']}||{videoid}")
         else:
             return await CallbackQuery.message.reply_text("Video Format Not Found.")
-    universal = InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ •", callback_data=f'close2')
+    universal = InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ •", callback_data='close2')
     if j == 0:
         return await CallbackQuery.message.reply_text("Video Format Not Found..")
     elif j == 1:
@@ -161,11 +161,14 @@ async def getspy(_,CallbackQuery):
                     a1,
                 ],
                 [
-                    InlineKeyboardButton(text="⪻", callback_data=f'good {videoid}|{user_id}'),
-                    InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data=f'close2')
-                ]    
+                    InlineKeyboardButton(
+                        text="⪻", callback_data=f'good {videoid}|{user_id}'
+                    ),
+                    InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data='close2'),
+                ],
             ]
         )
+
     elif j == 2:
         key = InlineKeyboardMarkup(
             [
@@ -174,11 +177,14 @@ async def getspy(_,CallbackQuery):
                     a2,
                 ],
                 [
-                    InlineKeyboardButton(text="⪻", callback_data=f'good {videoid}|{user_id}'),
-                    InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data=f'close2')
-                ]    
+                    InlineKeyboardButton(
+                        text="⪻", callback_data=f'good {videoid}|{user_id}'
+                    ),
+                    InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data='close2'),
+                ],
             ]
-        )  
+        )
+
     elif j == 3:
         key = InlineKeyboardMarkup(
             [
@@ -190,11 +196,14 @@ async def getspy(_,CallbackQuery):
                     a3,
                 ],
                 [
-                    InlineKeyboardButton(text="⪻", callback_data=f'good {videoid}|{user_id}'),
-                    InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data=f'close2')
-                ]    
+                    InlineKeyboardButton(
+                        text="⪻", callback_data=f'good {videoid}|{user_id}'
+                    ),
+                    InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data='close2'),
+                ],
             ]
-        ) 
+        )
+
     elif j == 4:
         key = InlineKeyboardMarkup(
             [
@@ -207,11 +216,14 @@ async def getspy(_,CallbackQuery):
                     a4,
                 ],
                 [
-                    InlineKeyboardButton(text="⪻", callback_data=f'good {videoid}|{user_id}'),
-                    InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data=f'close2')
-                ]    
+                    InlineKeyboardButton(
+                        text="⪻", callback_data=f'good {videoid}|{user_id}'
+                    ),
+                    InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data='close2'),
+                ],
             ]
-        )    
+        )
+
     elif j == 5:
         key = InlineKeyboardMarkup(
             [
@@ -227,11 +239,14 @@ async def getspy(_,CallbackQuery):
                     a5,
                 ],
                 [
-                    InlineKeyboardButton(text="⪻", callback_data=f'good {videoid}|{user_id}'),
-                    InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data=f'close2')
-                ]    
+                    InlineKeyboardButton(
+                        text="⪻", callback_data=f'good {videoid}|{user_id}'
+                    ),
+                    InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data='close2'),
+                ],
             ]
-        )  
+        )
+
     elif j == 6:
         key = InlineKeyboardMarkup(
             [
@@ -248,11 +263,14 @@ async def getspy(_,CallbackQuery):
                     a6,
                 ],
                 [
-                    InlineKeyboardButton(text="⪻", callback_data=f'good {videoid}|{user_id}'),
-                    InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data=f'close2')
-                ]    
+                    InlineKeyboardButton(
+                        text="⪻", callback_data=f'good {videoid}|{user_id}'
+                    ),
+                    InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data='close2'),
+                ],
             ]
-        )    
+        )
+
     else:
         return await CallbackQuery.message.reply_text("Video Format Not Found....")
     await CallbackQuery.edit_message_reply_markup(reply_markup=key)
@@ -263,27 +281,40 @@ async def getspy(_,CallbackQuery):
 async def ytdata(_,CallbackQuery):  
     callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]
-    user_id = CallbackQuery.from_user.id 
-    type, format, videoid = callback_request.split("||") 
+    user_id = CallbackQuery.from_user.id
+    type, format, videoid = callback_request.split("||")
     Name = CallbackQuery.from_user.first_name
     if type == 'audio':
-        a1 = InlineKeyboardButton(text=f"Audio Form", callback_data=f"boom audio||{format}||{videoid}")
+        a1 = InlineKeyboardButton(
+            text='Audio Form', callback_data=f"boom audio||{format}||{videoid}"
+        )
+
         a2 = InlineKeyboardButton(text=f"Document Form", callback_data=f"boom docaudio||{format}||{videoid}")
     else:
-        a1 = InlineKeyboardButton(text=f"Video Form", callback_data=f"boom video||{format}||{videoid}")
-        a2 = InlineKeyboardButton(text=f"Document Form", callback_data=f"boom docvideo||{format}||{videoid}")
-    key = InlineKeyboardMarkup(
-            [
-                [
-                    a1,
-                    a2,
-                ],
-                [
-                    InlineKeyboardButton(text="⪻", callback_data=f'good {videoid}|{user_id}'),
-                    InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data=f'close2')
-                ]    
-            ]
+        a1 = InlineKeyboardButton(
+            text='Video Form', callback_data=f"boom video||{format}||{videoid}"
         )
+
+        a2 = InlineKeyboardButton(
+            text='Document Form',
+            callback_data=f"boom docvideo||{format}||{videoid}",
+        )
+
+    key = InlineKeyboardMarkup(
+        [
+            [
+                a1,
+                a2,
+            ],
+            [
+                InlineKeyboardButton(
+                    text="⪻", callback_data=f'good {videoid}|{user_id}'
+                ),
+                InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data='close2'),
+            ],
+        ]
+    )
+
     await CallbackQuery.edit_message_reply_markup(reply_markup=key)
     
 
@@ -296,24 +327,23 @@ inl = InlineKeyboardMarkup(
         )
 
 upl = InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(text="ᴜᴘʟᴏᴀᴅɪɴɢ......", callback_data=f'down')
-                ]   
-            ]
-        )
+    [[InlineKeyboardButton(text="ᴜᴘʟᴏᴀᴅɪɴɢ......", callback_data='down')]]
+)
 
 def inl_mark(videoid, user_id):
-    buttons= [
-            [
-                InlineKeyboardButton(text="Download or Upload Failed......", callback_data=f'down')
-            ],
-            [
-                InlineKeyboardButton(text="⪻", callback_data=f'good {videoid}|{user_id}'),
-                InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data=f'close2')
-            ],
-        ]
-    return buttons 
+    return [
+        [
+            InlineKeyboardButton(
+                text="Download or Upload Failed......", callback_data='down'
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                text="⪻", callback_data=f'good {videoid}|{user_id}'
+            ),
+            InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data='close2'),
+        ],
+    ] 
 
 
 ytdl_opts = {"format" : "bestaudio", "quiet":True}

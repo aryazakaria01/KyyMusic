@@ -38,17 +38,13 @@ async def activevc(_, message: Message):
         duration_min = db_mem[message.chat.id]["total"]
         got_queue = get_queue.get(message.chat.id)
         if not got_queue:
-            await mystic.edit(f"Nothing in Queue")
-        fetched = []
-        for get in got_queue:
-            fetched.append(get)
-
+            await mystic.edit('Nothing in Queue')
+        fetched = list(got_queue)
         ### Results
         current_playing = fetched[0][0]
         user_name = fetched[0][1]
 
-        msg = "**Queued List**\n\n"
-        msg += "**Currently Playing:**"
+        msg = "**Queued List**\n\n" + "**Currently Playing:**"
         msg += "\n▶️" + current_playing[:30]
         msg += f"\n   ╚By:- {user_name}"
         msg += f"\n   ╚Duration:- Remaining `{dur_left}` out of `{duration_min}` Mins."
@@ -70,14 +66,15 @@ async def activevc(_, message: Message):
                 out_file.write(str(msg.strip()))
             await message.reply_document(
                 document=filename,
-                caption=f"**OUTPUT:**\n\n`Queued List`",
+                caption='**OUTPUT:**\n\n`Queued List`',
                 quote=False,
             )
+
             os.remove(filename)
         else:
             await mystic.edit(msg)
     else:
-        await message.reply_text(f"Tidak ada dalam Antrian")
+        await message.reply_text('Tidak ada dalam Antrian')
 
 
 @app.on_message(filters.command("activevc") & filters.user(SUDOERS))

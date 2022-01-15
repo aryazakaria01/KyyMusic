@@ -124,9 +124,13 @@ async def pause_cmd(_, message):
     if name not in options:
         return await message.reply_text(usage)
     if len(message.text) == 18:
-        return await message.reply_text(f"Confirmation!!\nYou sure you want to delete your whole playlist?", reply_markup=confirm_keyboard)
+        return await message.reply_text(
+            'Confirmation!!\nYou sure you want to delete your whole playlist?',
+            reply_markup=confirm_keyboard,
+        )
+
     else:
-         _playlist = await get_note_names(message.from_user.id)
+        _playlist = await get_note_names(message.from_user.id)
     if not _playlist:
         await message.reply_text("You have no Playlist on Music's Server")
     else:
@@ -141,7 +145,7 @@ async def pause_cmd(_, message):
                 if deleted:
                     return await message.reply_text(f"**Deleted the {count} music in playlist**")
                 else:
-                    return await message.reply_text(f"**No such saved music in playlist.**")                                
+                    return await message.reply_text('**No such saved music in playlist.**')
         await message.reply_text("You have no such music in Playlist.")                             
 
         
@@ -159,9 +163,13 @@ async def delgroupplaylist(_, message):
     if name not in options:
         return await message.reply_text(usage)
     if len(message.text) == 21:
-        return await message.reply_text(f"Confirmation!!\nYou sure you want to delete whole whole playlist?", reply_markup=confirm_group_keyboard)
+        return await message.reply_text(
+            'Confirmation!!\nYou sure you want to delete whole whole playlist?',
+            reply_markup=confirm_group_keyboard,
+        )
+
     else:
-         _playlist = await get_note_names(message.chat.id)
+        _playlist = await get_note_names(message.chat.id)
     if not _playlist:
         await message.reply_text("Group has no Playlist on Music's Server")
     else:
@@ -176,5 +184,5 @@ async def delgroupplaylist(_, message):
                 if deleted:
                     return await message.reply_text(f"**Deleted the {count} music in group's playlist**")
                 else:
-                    return await message.reply_text(f"**No such saved music in Group playlist.**")                                
+                    return await message.reply_text('**No such saved music in Group playlist.**')
         await message.reply_text("You have no such music in Group Playlist.")

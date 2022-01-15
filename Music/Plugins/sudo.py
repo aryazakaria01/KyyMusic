@@ -58,23 +58,23 @@ async def userdel(_, message: Message):
         user = await app.get_users(user)
         message.from_user
         if user.id not in await get_sudoers():
-            return await message.reply_text(f"Not a part of Music's Sudo.")
+            return await message.reply_text("Not a part of Music's Sudo.")
         removed = await remove_sudo(user.id)
         if removed:
             await message.reply_text(f"Menghapus **{user.mention}** dari Sudo.")
             return os.execvp("python3", ["python3", "-m", "Music"])
-        await message.reply_text(f"Sesuatu yang salah terjadi.")
+        await message.reply_text('Sesuatu yang salah terjadi.')
         return
     message.from_user.id
     user_id = message.reply_to_message.from_user.id
     mention = message.reply_to_message.from_user.mention
     if user_id not in await get_sudoers():
-        return await message.reply_text(f"Bukan bagian dari Sudo Musik.")
+        return await message.reply_text('Bukan bagian dari Sudo Musik.')
     removed = await remove_sudo(user_id)
     if removed:
         await message.reply_text(f"Menghapus **{mention}** dari Sudo.")
         return os.execvp("python3", ["python3", "-m", "Music"])
-    await message.reply_text(f"Something wrong happened.")
+    await message.reply_text('Something wrong happened.')
 
 
 @app.on_message(filters.command("sudolist"))

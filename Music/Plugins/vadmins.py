@@ -108,13 +108,9 @@ async def skip(client, m: Message):
             items = [int(x) for x in skip.split(" ") if x.isdigit()]
             items.sort(reverse=True)
             for x in items:
-                if x == 0:
-                    pass
-                else:
+                if x != 0:
                     hm = await skip_item(chat_id, x)
-                    if hm == 0:
-                        pass
-                    else:
+                    if hm != 0:
                         OP = OP + "\n" + f"**#{x}** - {hm}"
             await m.reply(OP)
 

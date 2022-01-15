@@ -16,9 +16,7 @@ def set(chat_id: int, admins_: List[int]):
 
 
 def gett(chat_id: int) -> List[int]:
-    if chat_id in admins:
-        return admins[chat_id]
-    return []
+    return admins[chat_id] if chat_id in admins else []
 
 
 def errors(func: Callable) -> Callable:
@@ -36,16 +34,16 @@ async def get_administrators(chat: Chat) -> List[int]:
 
     if get:
         return get
-    else:
-        administrators = await chat.get_members(filter="administrators")
-        to_set = []
+    administrators = await chat.get_members(filter="administrators")
+    to_set = [
+        administrator.user.id
+        for administrator in administrators
+        if administrator.can_manage_voice_chats
+    ]
 
-        for administrator in administrators:
-            if administrator.can_manage_voice_chats:
-                to_set.append(administrator.user.id)
 
-        set(chat.id, to_set)
-        return await get_administrators(chat)
+    set(chat.id, to_set)
+    return await get_administrators(chat)
 
 
 def authorized_users_only(func: Callable) -> Callable:

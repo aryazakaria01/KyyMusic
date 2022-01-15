@@ -33,10 +33,8 @@ async def ban_globally(_, message):
         else:
 
             await add_gban_user(user.id)
-            served_chats = []
             chats = await get_served_chats()
-            for chat in chats:
-                served_chats.append(int(chat["chat_id"]))
+            served_chats = [int(chat["chat_id"]) for chat in chats]
             m = await message.reply_text(
                 f"""
 **Menginisialisasi Larangan Global pada {user.mention}**
@@ -151,7 +149,7 @@ async def unban_globally(_, message):
                 await message.reply_text("Dia sudah bebas, mengapa menggertaknya?")
             else:
                 await remove_gban_user(user.id)
-                await message.reply_text(f"Ungbanned!")
+                await message.reply_text('Ungbanned!')
         return
     from_user_id = message.from_user.id
     user_id = message.reply_to_message.from_user.id

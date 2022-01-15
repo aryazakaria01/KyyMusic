@@ -159,7 +159,7 @@ async def music_onoff(_, message: Message):
     message.chat.id
     if status in ("ON", "on", "On"):
         lel = await message.reply("`processing...`")
-        if not message.chat.id in DISABLED_GROUPS:
+        if message.chat.id not in DISABLED_GROUPS:
             await lel.edit("» **Music Aktif.**")
             return
         DISABLED_GROUPS.remove(message.chat.id)
@@ -384,9 +384,7 @@ Saya perlu menjadi admin dengan beberapa izin:
                 speed = d["_speed_str"]
                 size = d["_total_bytes_str"]
                 bytesx = d["total_bytes"]
-                if str(bytesx) in flex:
-                    pass
-                else:
+                if str(bytesx) not in flex:
                     flex[str(bytesx)] = 1
                 if flex[str(bytesx)] == 1:
                     flex[str(bytesx)] += 1
@@ -397,36 +395,33 @@ Saya perlu menjadi admin dengan beberapa izin:
                             )
                     except Exception:
                         pass
-                if per > 250:
-                    if flex[str(bytesx)] == 2:
-                        flex[str(bytesx)] += 1
-                        if eta > 2:
-                            mystic.edit(
-                                f"Downloading {title[:50]}..\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec"
-                            )
-                        print(
-                            f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
+                if per > 250 and flex[str(bytesx)] == 2:
+                    flex[str(bytesx)] += 1
+                    if eta > 2:
+                        mystic.edit(
+                            f"Downloading {title[:50]}..\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec"
                         )
-                if per > 500:
-                    if flex[str(bytesx)] == 3:
-                        flex[str(bytesx)] += 1
-                        if eta > 2:
-                            mystic.edit(
-                                f"Downloading {title[:50]}...\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec"
-                            )
-                        print(
-                            f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
+                    print(
+                        f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
+                    )
+                if per > 500 and flex[str(bytesx)] == 3:
+                    flex[str(bytesx)] += 1
+                    if eta > 2:
+                        mystic.edit(
+                            f"Downloading {title[:50]}...\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec"
                         )
-                if per > 800:
-                    if flex[str(bytesx)] == 4:
-                        flex[str(bytesx)] += 1
-                        if eta > 2:
-                            mystic.edit(
-                                f"Downloading {title[:50]}....\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec"
-                            )
-                        print(
-                            f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
+                    print(
+                        f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
+                    )
+                if per > 800 and flex[str(bytesx)] == 4:
+                    flex[str(bytesx)] += 1
+                    if eta > 2:
+                        mystic.edit(
+                            f"Downloading {title[:50]}....\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec"
                         )
+                    print(
+                        f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
+                    )
             if d["status"] == "finished":
                 try:
                     taken = d["_elapsed_str"]
@@ -626,9 +621,7 @@ async def startyuplay(_, CallbackQuery):
             speed = d["_speed_str"]
             size = d["_total_bytes_str"]
             bytesx = d["total_bytes"]
-            if str(bytesx) in flex:
-                pass
-            else:
+            if str(bytesx) not in flex:
                 flex[str(bytesx)] = 1
             if flex[str(bytesx)] == 1:
                 flex[str(bytesx)] += 1
@@ -639,36 +632,33 @@ async def startyuplay(_, CallbackQuery):
                         )
                 except Exception:
                     pass
-            if per > 250:
-                if flex[str(bytesx)] == 2:
-                    flex[str(bytesx)] += 1
-                    if eta > 2:
-                        mystic.edit(
-                            f"Downloading {title[:50]}..\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec"
-                        )
-                    print(
-                        f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
+            if per > 250 and flex[str(bytesx)] == 2:
+                flex[str(bytesx)] += 1
+                if eta > 2:
+                    mystic.edit(
+                        f"Downloading {title[:50]}..\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec"
                     )
-            if per > 500:
-                if flex[str(bytesx)] == 3:
-                    flex[str(bytesx)] += 1
-                    if eta > 2:
-                        mystic.edit(
-                            f"Downloading {title[:50]}...\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec"
-                        )
-                    print(
-                        f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
+                print(
+                    f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
+                )
+            if per > 500 and flex[str(bytesx)] == 3:
+                flex[str(bytesx)] += 1
+                if eta > 2:
+                    mystic.edit(
+                        f"Downloading {title[:50]}...\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec"
                     )
-            if per > 800:
-                if flex[str(bytesx)] == 4:
-                    flex[str(bytesx)] += 1
-                    if eta > 2:
-                        mystic.edit(
-                            f"Downloading {title[:50]}....\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec"
-                        )
-                    print(
-                        f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
+                print(
+                    f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
+                )
+            if per > 800 and flex[str(bytesx)] == 4:
+                flex[str(bytesx)] += 1
+                if eta > 2:
+                    mystic.edit(
+                        f"Downloading {title[:50]}....\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec"
                     )
+                print(
+                    f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
+                )
         if d["status"] == "finished":
             try:
                 taken = d["_elapsed_str"]
