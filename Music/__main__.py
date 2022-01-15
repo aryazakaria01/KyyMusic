@@ -47,10 +47,9 @@ async def load_start():
         print("Error came while clearing db")
     for served_chat in served_chats:
         try:
-            await remove_active_chat(served_chat)                                         
+            await remove_active_chat(served_chat)
         except Exception as e:
             print("Error came while clearing db")
-            pass     
     await app.send_message(LOG_GROUP_ID, "Bot Started")
     await client.send_message(LOG_GROUP_ID, "Assistant Started")
     #Kalau clone atau fork jangan di hapus ya tolol

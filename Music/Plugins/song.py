@@ -147,8 +147,9 @@ async def startyuplay(_, CallbackQuery):
         )
     if duration == "None":
         return await CallbackQuery.message.reply_text(
-            f"Sorry!, Live Videos are not supported"
+            'Sorry!, Live Videos are not supported'
         )
+
     if CallbackQuery.from_user.id != int(user_id):
         return await CallbackQuery.answer(
             "This is not for you! Search You Own Song nigga", show_alert=True
@@ -304,7 +305,7 @@ def search_markup(
     user_id,
     query,
 ):
-    buttons = [
+    return [
         [
             InlineKeyboardButton(
                 text="¹", callback_data=f"beta {ID1}|{duration1}|{user_id}"
@@ -334,7 +335,6 @@ def search_markup(
             ),
         ],
     ]
-    return buttons
 
 
 def search_markup2(
@@ -351,7 +351,7 @@ def search_markup2(
     user_id,
     query,
 ):
-    buttons = [
+    return [
         [
             InlineKeyboardButton(
                 text="⁶", callback_data=f"beta {ID6}|{duration6}|{user_id}"
@@ -381,19 +381,14 @@ def search_markup2(
             ),
         ],
     ]
-    return buttons
 
 
 def gets(videoid, user_id):
-    buttons = [
-        [
+    return [[
             InlineKeyboardButton(
                 text="ᴀᴜᴅɪᴏ", callback_data=f"gets audio|{videoid}|{user_id}"
             ),
             InlineKeyboardButton(
                 text="ᴠɪᴅᴇᴏ", callback_data=f"gets video|{videoid}|{user_id}"
             ),
-        ],
-        [InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data=f"close2")],
-    ]
-    return buttons
+        ], [InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data='close2')]]

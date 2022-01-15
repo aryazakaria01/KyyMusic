@@ -34,10 +34,7 @@ async def get_note_names(chat_id: int) -> List[str]:
 async def get_playlist(chat_id: int, name: str) -> Union[bool, dict]:
     name = name
     _notes = await _get_playlists(chat_id)
-    if name in _notes:
-        return _notes[name]
-    else:
-        return False
+    return _notes[name] if name in _notes else False
 
 
 async def save_playlist(chat_id: int, name: str, note: dict):
